@@ -76,7 +76,7 @@
       var updateLogFromArray = function (array) {
         var logHtml = logs.map(function (log) {
           var date = new Date(log['timestamp']);
-          var dateStr = '[' + date.getMonth() + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + '] ';
+          var dateStr = '[' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + '] ';
           if (log['isWord'] == true) 
             return dateStr + '"' + log['word'] + '"<green>是</green>一个词语';
           if (log['isWord'] == false)
@@ -111,6 +111,7 @@
         <div class="col-lg-6">
           <h4>一些判断标准</h4>
           <p>
+            末尾带有“的”“地”“得”的很明显不是
             很明显由两个词语构成的，<red>不是</red>一个词语，比如“别到”、“扭出”等。<br />
             数字<red>不是</red>一个词语，比如“三二五”、“五千五”等。<br />
             人名、地名和机构名等命名实体<green>是</green>一个词语，比如“南京市”、“张小贱”等。<br />
