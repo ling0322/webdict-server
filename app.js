@@ -27,6 +27,10 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+process.on('uncaughtException', function(err) {
+  console.log('Caught exception: ' + err);
+});
+
 console.log(routes);
 
 app.get('/', routes.index);
