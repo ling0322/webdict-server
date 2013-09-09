@@ -28,11 +28,11 @@ exports.check = function(req, res) {
   var isWord = req.body.isWord;
   if (isWord === "true") isWord = true;
   if (isWord === "false") isWord = false;
+  if (isWord === "null") isWord = null;
   var uuid = req.cookies['uid']? req.cookies['uid']: 'null';
   db.setIsWord(word, isWord).then(function (words) {
     res.end();
   }).then(function () {
-    console.log("{}@{} {} is{} a word".format(uuid, req.ip, word, isWord? "": " not"));
     return db.updateLog(req.ip, uuid, word, isWord);
   }).done();
 };

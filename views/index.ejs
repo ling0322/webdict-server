@@ -28,12 +28,17 @@
         updateLogFromArray(logs);
 
         $('#true-button').click(function () {
-          checkWord($('#word').text(), true);
+          checkWord($('#word').text(), "true");
           nextWord();
         });
 
         $('#false-button').click(function () {
-          checkWord($('#word').text(), false);
+          checkWord($('#word').text(), "false");
+          nextWord();
+        });
+
+        $('#next-button').click(function () {
+          checkWord($('#word').text(), "null");
           nextWord();
         });
 
@@ -77,10 +82,12 @@
         var logHtml = logs.map(function (log) {
           var date = new Date(log['timestamp']);
           var dateStr = '[' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + '] ';
-          if (log['isWord'] == true) 
+          if (log['isWord'] === true) 
             return dateStr + '"' + log['word'] + '"<green>是</green>一个词语';
-          if (log['isWord'] == false)
+          if (log['isWord'] === false)
             return dateStr + '"' + log['word'] + '"<red>不是</red>一个词语';
+          if (log['isWord'] === null)
+            return dateStr + '"' + log['word'] + '"<blue>不确定</blue>';          
         });
         $('#log').empty().html(logHtml.join('<br />'));
       };
@@ -104,6 +111,7 @@
         <p>
           <a class="btn btn-danger btn-lg" href="javascript:;" id="false-button">不是一个词 (F)</a>
           <a class="btn btn-lg btn-success" href="javascript:;" id="true-button">是一个词 (T)</a>
+          <a class="btn btn-lg btn-primary" href="javascript:;" id="next-button">跳过</a>
         </p>
       </div>
 
