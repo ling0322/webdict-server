@@ -67,6 +67,7 @@ exports.setIsWord = function (word, isWord) {
     return Q.ninvoke(db.collection('vocabulary'), "findOne", {"word": word}).then(function (wordObject) {
       if (!wordObject) {
         console.log(word);
+        return ;
       }
       wordObject["isWord"] = isWord;
       return Q.ninvoke(db.collection('vocabulary'), "update", {"_id": wordObject['_id']}, wordObject);
