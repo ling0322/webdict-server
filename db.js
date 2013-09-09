@@ -65,7 +65,9 @@ exports.userExists = function (userUUID) {
 exports.setIsWord = function (word, isWord) {
   return Q.nfcall(mongodb.MongoClient.connect, MONGO_CONNECT_STR).then(function (db) {
     return Q.ninvoke(db.collection('vocabulary'), "findOne", {"word": word}).then(function (wordObject) {
-      if (!wordObject) throw new Error('word not exists');
+      if (!wordObject) {
+        console.log(word);
+      }
       wordObject["isWord"] = isWord;
       return Q.ninvoke(db.collection('vocabulary'), "update", {"_id": wordObject['_id']}, wordObject);
     }).fin(function () {
