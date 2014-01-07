@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  candidate: MyString
+  is_word: false
+
+two:
+  candidate: MyString
+  is_word: false

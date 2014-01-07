@@ -1,2 +1,0 @@
-weidict-server
-==============

@@ -1,0 +1,14 @@
+.examples {
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.example-sentence {
+  margin-bottom: 5px;
+}
+
+#count {
+  font-size: 32px;
+  font-family: serif;
+  color: rgb(53, 126, 189);
+}
