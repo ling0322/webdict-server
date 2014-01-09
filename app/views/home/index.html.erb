@@ -66,6 +66,7 @@
         $('#word').text(word['word'])
                   .attr('word_id', word['id']);
         $('.examples').html('');
+        if (word['examples'] == undefined) word['examples'] = '';
         var example_text = word['examples'].replace(/\\n/g, '<br>')
                                            .replace(new RegExp(word['word'], 'g'), 
                                            	        '<red>' + word['word'] + '</red>');
@@ -78,8 +79,7 @@
 
       var updateLog = function () {
         $.get('/check', function (content) {
-          logs = JSON.parse(content);
-          updateLogFromArray(logs);
+          updateLogFromArray(content);
         });
         $.get('/check/count', function (content) {
           $('#count').text(content);
@@ -87,8 +87,8 @@
       };
 
       var updateLogFromArray = function (array) {
-        var logHtml = logs.map(function (log) {
-          var date = new Date(log['timestamp']);
+        var logHtml = array.slice(0, 10).map(function (log) {
+          var date = new Date(log['timestamp'] * 1000);
           var dateStr = '[' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + '] ';
           if (log['isWord'] === true) 
             return dateStr + '"' + log['candidate'] + '"<green>是</green>一个词语';

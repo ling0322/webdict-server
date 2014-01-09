@@ -1,7 +1,7 @@
 class Candidate < ActiveRecord::Base
   attr_accessible :examples, :text
 
-  def self.random_candidate(limit = 10)
+  def self.random_candidate(limit = 100)
     candidate_list = order('random()').limit(limit).map { |candidate| {
        :word => candidate[:text], 
        :examples => candidate[:examples],
